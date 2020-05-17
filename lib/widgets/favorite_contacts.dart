@@ -1,3 +1,4 @@
+import 'package:chat_ui_concept/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/message_model.dart';
 
@@ -40,26 +41,31 @@ class FavoriteContacts extends StatelessWidget {
               itemCount: favorites.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    children: <Widget>[
-                      CircleAvatar(
-                        radius: 35.0,
-                        backgroundImage: AssetImage(favorites[index].imageUrl),
-                      ),
-                      SizedBox(
-                        height: 6.0
-                      ),
-                      Text(
-                        favorites[index].name,
-                        style: TextStyle(
-                          color: Colors.blueGrey,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600
-                        )
-                      ),
-                    ],
+                return GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(user: favorites[index])));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: <Widget>[
+                        CircleAvatar(
+                          radius: 35.0,
+                          backgroundImage: AssetImage(favorites[index].imageUrl),
+                        ),
+                        SizedBox(
+                          height: 6.0
+                        ),
+                        Text(
+                          favorites[index].name,
+                          style: TextStyle(
+                            color: Colors.blueGrey,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600
+                          )
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }
